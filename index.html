@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flex Panels 💪</title>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'>
+</head>
+<body>
+  <style>
+    html {
+      background: black;
+      box-sizing: border-box;
+      font-family:'helvetica neue';
+      font-size: 20px;
+      font-weight: 200;
+    }
+    body {
+      margin: 0;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    .panels {
+      overflow: hidden;
+      display: flex;
+    }
+    .panel {
+      box-shadow:inset 0 0 0 5px rgba(255,255,255,0.1);
+      color:white;
+      text-align: center;
+      align-items:center;
+      opacity: 0.7;
+      transition:
+        font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
+        flex 0.7s,
+        opacity 0.7s,
+        background 0.2s;
+      font-size: 20px;
+      background-size:cover;
+      background-position:center;
+      flex: 1;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .panel:hover { opacity: 1 }
+    .newYork {
+      background-image:url(https://d0bb9bb29a4a152db5cb-2fd7b88453b021537812277c8c433fcb.ssl.cf1.rackcdn.com/434/6/large.jpg);
+    }
+    .tokyo {
+      background-image:url(http://whywander.com/wp-content/uploads/2017/05/Tokyo_Dollarphotoclub_72848283-copy.jpg);
+    }
+    .canberra {
+      background-image:url(http://www.rlwc2017.com/sites/default/files/styles/hero_type_2/public/Canberra_450x800_0.jpg?itok=tH2MVoIn);
+    }
+    /* Flex Items */
+    .panel > * {
+      margin:0;
+      width: 100%;
+      transition:transform 0.5s;
+      flex: 1 0 auto;
+      display:flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .panel p {
+      text-transform: uppercase;
+      font-family: 'Amatic SC', cursive;
+      text-shadow:0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+      font-size: 2em;
+    }
+    .panel > .title {
+      font-size: 4em;
+    }
+    .panel.open {
+      flex: 2;
+    }
+
+    @media only screen and (min-width: 501px) {
+      .panels { min-height: 100vh; }
+    }
+    @media only screen and (max-width: 500px) {
+      .panels {
+        flex-direction: column;
+        min-width: 100vw;
+      }
+    }
+
+  </style>
+
+
+  <div class="panels">
+    <div class="panel newYork">
+      <p class="title">New York</p>
+      <p class="sub1"></p>
+      <p class="sub2">Save the date:<br>15 June 2019</p>
+    </div>
+    <div class="panel tokyo">
+      <p class="title">Tokyo</p>
+      <p class="sub1"></p>
+      <p class="sub2">Save the date:<br>31 August 2019</p>
+    </div>
+    <div class="panel canberra">
+      <p class="title">Canberra</p>
+      <p class="sub1"></p>
+      <p class="sub2">Save the date:<br>9 November 2019</p>
+    </div>
+  </div>
+
+  <script>
+    const panels = document.querySelectorAll('.panel');
+    function toggleOpen() {
+      if (this.classList.contains('open')) {
+        this.classList.remove('open');
+        return
+      }
+
+      const openEls = document.querySelectorAll('.open')
+
+      if (openEls.length) {
+        openEls.forEach(function(open) { open.classList.remove('open') })
+      }
+
+      if (!this.classList.contains('open')) {
+        this.classList.add('open');
+      }
+    }
+
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('mouseenter', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('mouseleave', toggleOpen));
+  </script>
+
+</body>
+</html>
