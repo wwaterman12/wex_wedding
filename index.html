@@ -17,6 +17,8 @@
     }
     body {
       margin: 0;
+      text-transform: uppercase;
+      font-family: 'Amatic SC', cursive;
     }
     *, *:before, *:after {
       box-sizing: inherit;
@@ -67,8 +69,6 @@
     }
 
     .panel p {
-      text-transform: uppercase;
-      font-family: 'Amatic SC', cursive;
       text-shadow:0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
       font-size: 2em;
     }
@@ -95,8 +95,86 @@
       }
     }
 
-  </style>
+    #header {
+      position: absolute;
+      width: 7em;
+      height: 50px;
+      top: 30%;
+      left: 50%;
+      margin-left: -3.5em; /* margin is -0.5 * dimension */
+      margin-top: -25px;
+      z-index: 2000;
+      font-size: 2em;
+      transition:transform 1s;
+      opacity: 1;
+      color: #737780;
+    }
 
+    #button {
+      font-size: 1em;
+      margin: 1em auto;
+      padding: 5px 10px;
+      text-align: center;
+      border: solid 1px #737780;
+      border-radius: 10%;
+      width:fit-content;
+      width: -moz-fit-content;
+      width: -webkit-fit-content;
+    }
+
+    #button:hover {
+      cursor: pointer;
+      color: #fff;
+      background-color: #737780;
+    }
+
+    .moved-header {
+     -webkit-transform: translateY(-1000%);  /* Chrome, Opera 15+, Safari 3.1+ */
+      -ms-transform: translateY(-1000%);  /* IE 9 */
+      transform: translateY(-1000%);  /* Firefox 16+, IE 10+, Opera */
+    }
+
+    #loader-wrapper .loader-section {
+      position: fixed;
+      top: 0;
+      width: 51%;
+      height: 100%;
+      background: #fff;
+      z-index: 1000;
+    }
+
+    #loader-wrapper .loader-section.section-left {
+      transition:transform 1s;
+      left: 0;
+    }
+
+    #loader-wrapper .loader-section.section-right {
+      transition:transform 1s;
+      right: 0;
+    }
+    .loaded-left {
+      -webkit-transform: translateX(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+      -ms-transform: translateX(-100%);  /* IE 9 */
+      transform: translateX(-100%);  /* Firefox 16+, IE 10+, Opera */
+    }
+    .loaded-right {
+      -webkit-transform: translateX(100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+      -ms-transform: translateX(100%);  /* IE 9 */
+      transform: translateX(100%);  /* Firefox 16+, IE 10+, Opera */
+    }
+
+  </style>
+  <div id="loader-wrapper">
+    <div id="loader"></div>
+
+    <div class="loader-section section-left"></div>
+    <div class="loader-section section-right"></div>
+
+  </div>
+  <div id="header">
+    Wes and Lex get married<br>
+    <div id="button">Enter</div>
+  </div>
 
   <div class="panels">
     <div class="panel newYork">
@@ -117,10 +195,17 @@
   </div>
 
   <script>
-    console.log('running');
     const panels = document.querySelectorAll('.panel');
+    const button = document.getElementById('button');
+
+    function enter() {
+      button.remove();
+      document.getElementById('header').classList.add('moved-header');
+      document.querySelector('.section-left').classList.add('loaded-left');
+      document.querySelector('.section-right').classList.add('loaded-right');
+    }
+
     function toggleOpen() {
-      console.log('func hit');
       if (this.classList.contains('open')) {
         this.classList.remove('open');
         return
@@ -143,6 +228,9 @@
       panels.forEach(panel => panel.addEventListener('mouseenter', toggleOpen));
       panels.forEach(panel => panel.addEventListener('mouseleave', toggleOpen));
     }
+
+    button.addEventListener('click', enter);
+
   </script>
 
 </body>
