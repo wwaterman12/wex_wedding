@@ -117,8 +117,10 @@
   </div>
 
   <script>
+    console.log('running');
     const panels = document.querySelectorAll('.panel');
     function toggleOpen() {
+      console.log('func hit');
       if (this.classList.contains('open')) {
         this.classList.remove('open');
         return
@@ -135,9 +137,12 @@
       }
     }
 
-    panels.forEach(panel => panel.addEventListener('touch', toggleOpen));
-    panels.forEach(panel => panel.addEventListener('mouseenter', toggleOpen));
-    panels.forEach(panel => panel.addEventListener('mouseleave', toggleOpen));
+    if (window.screen.width < 501) {
+      panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    } else {
+      panels.forEach(panel => panel.addEventListener('mouseenter', toggleOpen));
+      panels.forEach(panel => panel.addEventListener('mouseleave', toggleOpen));
+    }
   </script>
 
 </body>
