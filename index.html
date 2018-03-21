@@ -77,9 +77,16 @@
       font-size: 4em;
     }
 
-    .title a {
-      text-decoration: none;
-      color: #fff;
+    a {
+      text-decoration: none !important;
+      color: #fff !important;
+    }
+
+    .anchor-top {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
     }
 
     .panel.open {
@@ -159,6 +166,7 @@
     }
 
     .content-section {
+      position: relative;
       min-height: 100vh;
       text-align: center;
       color: #fff;
@@ -235,35 +243,56 @@
     <div id="button">Enter</div>
   </div>
 
-  <div class="panels">
+  <div id="top" class="panels">
     <div class="panel newYork">
       <p class="title"><a href="#new-york-content">New York</a></p>
       <p class="sub1"></p>
-      <p class="sub2"><span class="new-york-text">Save the date:<br>15 June 2019</span></p>
+      <p class="sub2">
+        <span class="new-york-text">
+          <a href="#new-york-content">
+            Save the date:<br>15 June 2019
+          </a>
+        </span>
+      </p>
     </div>
     <div class="panel tokyo">
       <p class="title"><a href="#tokyo-content">Tokyo</a></p>
       <p class="sub1"></p>
-      <p class="sub2"><span class="tokyo-text">Save the date:<br>31 August 2019</span></p>
+      <p class="sub2">
+        <span class="tokyo-text">
+          <a href="#tokyo-content">
+            Save the date:<br>31 August 2019
+          </a>
+        </span>
+      </p>
     </div>
     <div class="panel canberra">
       <p class="title"><a href="#canberra-content">Canberra</a></p>
       <p class="sub1"></p>
-      <p class="sub2"><span class="canberra-text">Save the date:<br>9 November 2019</span></p>
+      <p class="sub2">
+        <span class="canberra-text">
+          <a href="#canberra-content">
+            Save the date:<br>9 November 2019
+          </a>
+        </span>
+      </p>
     </div>
   </div>
 
   <div class="content-section" id="new-york-content">
     <h2>New York</h2>
     <p>More info coming soon...</p>
+    <p class="anchor-top"><a href="#top">Back to top</a></p>
   </div>
   <div class="content-section" id="tokyo-content">
     <h2>Tokyo</h2>
     <p>More info coming soon...</p>
+    <p class="anchor-top"><a href="#top">Back to top</a></p>
   </div>
   <div class="content-section" id="canberra-content">
     <h2>Canberra</h2>
     <p>More info coming soon...</p>
+    <p class="anchor-top"><a href="#top">Back to top</a></p>
   </div>
 
   <script>
